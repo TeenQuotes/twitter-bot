@@ -40,6 +40,6 @@ class TweetQuote extends Command
     public function handle()
     {
         $quote = Quote::published()->inTwitterSize()->random()->first();
-        Twitter::postTweet(['status' => $quote->content, 'format' => 'json']);
+        Twitter::postTweet(['status' => htmlspecialchars_decode($quote->content), 'format' => 'json']);
     }
 }
