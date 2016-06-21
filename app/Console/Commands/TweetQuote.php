@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Quote;
+use Illuminate\Console\Command;
 use Twitter;
 
 class TweetQuote extends Command
