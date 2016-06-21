@@ -1,15 +1,14 @@
 <?php
 
-use App\RandomGeneratorInterface;
 use App\LinkEnricher;
 use App\Quote;
+use App\RandomGeneratorInterface;
 
 class LinkEnricherTest extends TestCase
 {
-
     public function testEnrichQuoteWhenItCanAndGeneratorIsTrue()
     {
-        $enricher = new LinkEnricher(new TrueResultRandomGenerator);
+        $enricher = new LinkEnricher(new TrueResultRandomGenerator());
         $q = $this->fakeQuote();
 
         $this->assertEquals('foo http://teen-quotes.com/quotes/42', $enricher->act($q)->content);
@@ -17,7 +16,7 @@ class LinkEnricherTest extends TestCase
 
     public function testDoesNotEnrichQuoteWhenItCanAndGeneratorIsFalse()
     {
-        $enricher = new LinkEnricher(new FalseResultRandomGenerator);
+        $enricher = new LinkEnricher(new FalseResultRandomGenerator());
         $q = $this->fakeQuote();
 
         $this->assertEquals('foo', $enricher->act($q)->content);
@@ -25,7 +24,7 @@ class LinkEnricherTest extends TestCase
 
     public function testDoesNotEnrichQuoteWhenItCannotAndGeneratorIsTrue()
     {
-        $enricher = new LinkEnricher(new TrueResultRandomGenerator);
+        $enricher = new LinkEnricher(new TrueResultRandomGenerator());
         $content = str_repeat('a', 140 - 23);
         $q = $this->fakeQuote($content);
 
@@ -40,14 +39,16 @@ class LinkEnricherTest extends TestCase
     }
 }
 
-class TrueResultRandomGenerator implements RandomGeneratorInterface {
+class TrueResultRandomGenerator implements RandomGeneratorInterface
+{
     public function generate($upperBound)
     {
         return 24;
     }
 }
 
-class FalseResultRandomGenerator implements RandomGeneratorInterface {
+class FalseResultRandomGenerator implements RandomGeneratorInterface
+{
     public function generate($upperBound)
     {
         return 26;

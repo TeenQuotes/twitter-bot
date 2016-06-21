@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Quote;
 use App\LinkEnricher;
+use App\Quote;
 use App\RandomGenerator;
 use Illuminate\Console\Command;
 use Twitter;
@@ -44,7 +44,7 @@ class TweetQuote extends Command
         $quote = Quote::published()->inTwitterSize()->random()->first();
 
         $enrichers = [
-            new LinkEnricher(new RandomGenerator),
+            new LinkEnricher(new RandomGenerator()),
         ];
 
         foreach ($enrichers as $enricher) {

@@ -2,8 +2,8 @@
 
 namespace App;
 
-abstract class Enricher {
-
+abstract class Enricher
+{
     /**
      * @var RandomGeneratorInterface
      */
@@ -14,31 +14,37 @@ abstract class Enricher {
         $this->generator = $generator;
     }
 
-    public final function act(Quote $q)
+    final public function act(Quote $q)
     {
         if ($this->shouldAct() and $this->canAct($q)) {
             return $this->enrich($q);
         }
+
         return $q;
     }
 
     /**
      * Enrich the content of a quote.
-     * @param  Quote  $q
+     *
+     * @param Quote $q
+     *
      * @return Quote
      */
-    protected abstract function enrich(Quote $q);
+    abstract protected function enrich(Quote $q);
 
     /**
      * Should the enricher try to enrich the quote?
+     *
      * @return bool
      */
-    protected abstract function shouldAct();
+    abstract protected function shouldAct();
 
     /**
      * Can the enricher actually modify the content of the quote?
-     * @param  Quote  $q
+     *
+     * @param Quote $q
+     *
      * @return bool
      */
-    protected abstract function canAct(Quote $q);
+    abstract protected function canAct(Quote $q);
 }
