@@ -2,15 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use DB;
+use Illuminate\Database\Eloquent\Model;
 
 class Quote extends Model
 {
-    const REFUSED   = -1;
-    const WAITING   = 0;
+    const REFUSED = -1;
+    const WAITING = 0;
     const PUBLISHED = 1;
-    const PENDING   = 2;
+    const PENDING = 2;
 
     /**
      * Scope a query to only include published quotes.
@@ -24,7 +24,7 @@ class Quote extends Model
 
     public function scopeInTwitterSize($query)
     {
-        return $query->whereRaw("char_length(content) <= 140");
+        return $query->whereRaw('char_length(content) <= 140');
     }
 
     /**
