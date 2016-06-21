@@ -12,6 +12,8 @@ class Quote extends Model
     const PUBLISHED = 1;
     const PENDING = 2;
 
+    protected $fillable = ['id', 'content'];
+
     /**
      * Scope a query to only include published quotes.
      *
