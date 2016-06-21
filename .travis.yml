@@ -6,6 +6,9 @@ php:
   - 7.0
   - hhvm
 
+before_install:
+  - travis_retry composer install
+
 script:
   - vendor/bin/phpunit -vvv
 
