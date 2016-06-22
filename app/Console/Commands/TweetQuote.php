@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\HashtagEnricher;
 use App\LinkEnricher;
 use App\Quote;
 use App\RandomGenerator;
@@ -45,6 +46,7 @@ class TweetQuote extends Command
 
         $enrichers = [
             new LinkEnricher(new RandomGenerator()),
+            new HashtagEnricher(new RandomGenerator()),
         ];
 
         foreach ($enrichers as $enricher) {
