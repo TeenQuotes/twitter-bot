@@ -1,8 +1,8 @@
 <?php
 
 use App\HashtagEnricher;
-use App\RandomGenerator;
 use App\Quote;
+use App\RandomGenerator;
 
 class HashtagEnricherTest extends TestCase
 {
@@ -36,7 +36,7 @@ class HashtagEnricherTest extends TestCase
     public function testDoesNotEnrichQuoteWhenItCannotAndGeneratorIsTrue()
     {
         $enricher = $this->trueHashtagEnricher();
-        $content = 'love you!'.str_repeat('a', 140-strlen('love you! #love')+1);
+        $content = 'love you!'.str_repeat('a', 140 - strlen('love you! #love') + 1);
         $q = $this->fakeQuote($content);
 
         $this->assertEquals($content, $enricher->act($q)->content);

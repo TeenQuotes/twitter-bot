@@ -52,7 +52,7 @@ class HashtagEnricher extends Enricher
 
     private function eligibleHashtags(Quote $q)
     {
-        return (new Collection($this->hashtags))->filter(function($hashtag) use($q) {
+        return (new Collection($this->hashtags))->filter(function ($hashtag) use ($q) {
             $containsHastag = $this->str_contains(strtolower($q->content), $hashtag);
             $sizeFits = $this->hashtagFitsInQuote($hashtag, $q);
 
