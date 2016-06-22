@@ -37,6 +37,9 @@ class LinkEnricher extends Enricher
      */
     protected function canAct(Quote $q)
     {
+        // A URL of any length will be altered to 23 characters https://support.twitter.com/articles/78124
+        // 1 for whitespace
+        // 140 is the size of a tweet
         return (strlen($q->content) + 23 + 1) <= 140;
     }
 }
