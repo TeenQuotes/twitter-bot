@@ -10,7 +10,7 @@ class HashtagEnricher extends Enricher
         'crush', 'awkward', 'remember', 'distance', 'stars', 'phone', 'smartphone',
         'tears', 'cheating', 'smile', 'summer', 'winter', 'spring', 'heart', 'bullshit',
         'mistake', 'story', 'grow', 'kiss', 'memories', 'confused', 'messages', 'boyfriend',
-        'girlfriend', 'pray', 'song', 'dad', 'mum', 'moon'];
+        'girlfriend', 'pray', 'song', 'dad', 'mum', 'moon', ];
 
     /**
      * Enrich the content of a quote.
