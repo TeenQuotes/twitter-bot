@@ -2,13 +2,13 @@
 
 use App\LinkEnricher;
 use App\Quote;
-use App\RandomGeneratorInterface;
+use App\RandomGenerator;
 
 class LinkEnricherTest extends TestCase
 {
     public function testEnrichQuoteWhenItCanAndGeneratorIsTrue()
     {
-        $enricher = new LinkEnricher(new TrueResultRandomGenerator());
+        $enricher = $this->trueLinkEnricher();
         $q = $this->fakeQuote();
 
         $this->assertEquals('foo http://teen-quotes.com/quotes/42', $enricher->act($q)->content);
@@ -16,7 +16,7 @@ class LinkEnricherTest extends TestCase
 
     public function testDoesNotEnrichQuoteWhenItCanAndGeneratorIsFalse()
     {
-        $enricher = new LinkEnricher(new FalseResultRandomGenerator());
+        $enricher = $this->falseLinkEnricher();
         $q = $this->fakeQuote();
 
         $this->assertEquals('foo', $enricher->act($q)->content);
@@ -24,7 +24,7 @@ class LinkEnricherTest extends TestCase
 
     public function testDoesNotEnrichQuoteWhenItCannotAndGeneratorIsTrue()
     {
-        $enricher = new LinkEnricher(new TrueResultRandomGenerator());
+        $enricher = $this->trueLinkEnricher();
         $content = str_repeat('a', 140 - 23);
         $q = $this->fakeQuote($content);
 
@@ -37,20 +37,22 @@ class LinkEnricherTest extends TestCase
 
         return new Quote(['id' => 42, 'content' => $content]);
     }
-}
 
-class TrueResultRandomGenerator implements RandomGeneratorInterface
-{
-    public function generate($upperBound)
+    private function trueLinkEnricher()
     {
-        return 24;
+        $generator = $this->prophesize(RandomGenerator::class);
+
+        $generator->generate(100)->shouldBeCalled()->willReturn(25);
+
+        return new LinkEnricher($generator->reveal());
     }
-}
 
-class FalseResultRandomGenerator implements RandomGeneratorInterface
-{
-    public function generate($upperBound)
+    private function falseLinkEnricher()
     {
-        return 26;
+        $generator = $this->prophesize(RandomGenerator::class);
+
+        $generator->generate(100)->shouldBeCalled()->willReturn(26);
+
+        return new LinkEnricher($generator->reveal());
     }
 }
