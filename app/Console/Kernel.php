@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\TweetQuote::class,
+        Commands\PromoteWebsite::class,
     ];
 
     /**
@@ -26,5 +27,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('tq:post-quote')->cron('20,40 * * * * *');
+        $schedule->command('tq:promote')->cron('10 6,18 * * * *');
     }
 }
