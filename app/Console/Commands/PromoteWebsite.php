@@ -53,6 +53,7 @@ class PromoteWebsite extends Command
             "It's a beautiful day to browse the latest published quotes on Teen Quotes! http://teen-quotes.com #love #life",
             'Want to post quotes? Save quotes to your favorites? Have a personal profile? Create an account! https://account.teen-quotes.com/signup',
             ]);
+
         return $c->random();
     }
 }
