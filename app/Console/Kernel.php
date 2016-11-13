@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\TweetQuote::class,
         Commands\PromoteWebsite::class,
+        Commands\FollowUsers::class,
+        Commands\UnfollowUsers::class,
     ];
 
     /**
@@ -32,5 +34,10 @@ class Kernel extends ConsoleKernel
 
         // Promote the website
         $schedule->command('tq:promote')->cron('10 6,18 * * * *');
+
+        // Follow users
+        $schedule->command('tq:follow-users')->cron('21 */2 * * * *');
+        // Unfollow users
+        $schedule->command('tq:unfollow-users')->cron('10 */2 * * * *');
     }
 }

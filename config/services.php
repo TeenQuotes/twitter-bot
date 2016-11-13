@@ -35,4 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'twitter' => [
+        'my_screen_name' => 'TeenQuotesWeb'
+    ],
+
 ];
