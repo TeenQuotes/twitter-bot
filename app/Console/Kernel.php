@@ -38,6 +38,6 @@ class Kernel extends ConsoleKernel
         // Follow users
         $schedule->command('tq:follow-users')->cron('21 */2 * * * *');
         // Unfollow users
-        $schedule->command('tq:unfollow-users')->cron('10 */2 * * * *');
+        $schedule->command('tq:unfollow-users')->cron('10,30,50 */2 * * * *');
     }
 }
