@@ -26,7 +26,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('tq:post-quote')->cron('20,40 * * * * *');
+        // Post quotes
+        $schedule->command('tq:post-quote')->cron('20 */2 * * * *');
+        $schedule->command('tq:post-quote')->cron('40 3,11,17 * * * *');
+
+        // Promote the website
         $schedule->command('tq:promote')->cron('10 6,18 * * * *');
     }
 }
