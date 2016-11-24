@@ -29,15 +29,15 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // Post quotes
-        $schedule->command('tq:post-quote')->cron('20 */2 * * * *');
-        $schedule->command('tq:post-quote')->cron('40 3,11,17 * * * *');
+        $schedule->command('tq:post-quote')->cron('20 */2 * * *');
+        $schedule->command('tq:post-quote')->cron('40 3,11,17 * * *');
 
         // Promote the website
-        $schedule->command('tq:promote')->cron('10 6,18 * * * *');
+        $schedule->command('tq:promote')->cron('10 6,18 * * *');
 
         // Follow users
-        $schedule->command('tq:follow-users')->cron('21 */2 * * * *');
+        $schedule->command('tq:follow-users')->cron('21 2,14 * * 1,3,5');
         // Unfollow users
-        $schedule->command('tq:unfollow-users')->cron('10,30,50 */2 * * * *');
+        $schedule->command('tq:unfollow-users')->cron('40 5,17 * * 2,4,6');
     }
 }
