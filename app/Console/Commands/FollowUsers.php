@@ -40,7 +40,7 @@ class FollowUsers extends Command
     public function handle()
     {
         $myFollowers = TwitterUtils::myFollowers();
-        $usersToFollow = TwitterUtils::followersForAccount('ohteenquotes', 50);
+        $usersToFollow = TwitterUtils::followersForAccount('ohteenquotes', rand(25, 50));
         $alreadyRequested = $this->alreadyRequested($usersToFollow);
 
         // We should follow:

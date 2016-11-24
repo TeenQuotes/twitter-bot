@@ -39,7 +39,7 @@ class UnfollowUsers extends Command
      */
     public function handle()
     {
-        $toUnfollow = TwitterUtils::myFollowings(15);
+        $toUnfollow = TwitterUtils::myFollowings(rand(10, 15));
 
         $toUnfollow->each(function($userId) {
             Twitter::postUnfollow(['user_id' => $userId]);
