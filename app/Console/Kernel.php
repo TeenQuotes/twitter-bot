@@ -35,9 +35,16 @@ class Kernel extends ConsoleKernel
         // Promote the website
         $schedule->command('tq:promote')->cron('10 6,18 * * *');
 
-        // Follow users
-        $schedule->command('tq:follow-users')->cron('21 2,14 * * 1,3,5');
-        // Unfollow users
-        $schedule->command('tq:unfollow-users')->cron('40 5,17 * * 2,4,6');
+        if ($this->shouldFollow()) {
+            // Follow users
+            $schedule->command('tq:follow-users')->cron('21 2,14 * * 1,3,5');
+            // Unfollow users
+            $schedule->command('tq:unfollow-users')->cron('40 5,17 * * 2,4,6');
+        }
+    }
+
+    private function shouldFollow()
+    {
+      return false;
     }
 }
