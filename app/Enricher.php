@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Config;
+
 abstract class Enricher
 {
     /**
@@ -47,4 +49,9 @@ abstract class Enricher
      * @return bool
      */
     abstract protected function canAct(Quote $q);
+
+    protected function tweetSize()
+    {
+        return Config::get('twitter.tweetSize');
+    }
 }
