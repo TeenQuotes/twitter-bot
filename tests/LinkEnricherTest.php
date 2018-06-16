@@ -25,7 +25,7 @@ class LinkEnricherTest extends TestCase
     public function testDoesNotEnrichQuoteWhenItCannotAndGeneratorIsTrue()
     {
         $enricher = $this->trueLinkEnricher();
-        $content = str_repeat('a', 140 - 23);
+        $content = str_repeat('a', Config::get('twitter.tweetSize') - 23);
         $q = $this->fakeQuote($content);
 
         $this->assertEquals($content, $enricher->act($q)->content);

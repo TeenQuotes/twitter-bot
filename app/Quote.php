@@ -3,6 +3,7 @@
 namespace App;
 
 use DB;
+use Config;
 use Illuminate\Database\Eloquent\Model;
 
 class Quote extends Model
@@ -26,7 +27,7 @@ class Quote extends Model
 
     public function scopeInTwitterSize($query)
     {
-        return $query->whereRaw('char_length(content) <= 140');
+        return $query->whereRaw('char_length(content) <= '.Config::get('twitter.tweetSize'));
     }
 
     /**

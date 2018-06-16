@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Config;
 use Illuminate\Support\Collection;
 
 class HashtagEnricher extends Enricher
@@ -68,8 +69,7 @@ class HashtagEnricher extends Enricher
     {
         // 1 for whitespace
         // 1 for #
-        // 140 is the size of a tweet
-        return (strlen($q->content) + strlen($hashtag) + 2) <= 140;
+        return (strlen($q->content) + strlen($hashtag) + 2) <= $this->tweetSize();
     }
 
     private function str_contains($str, $search)

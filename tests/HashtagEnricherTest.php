@@ -36,7 +36,8 @@ class HashtagEnricherTest extends TestCase
     public function testDoesNotEnrichQuoteWhenItCannotAndGeneratorIsTrue()
     {
         $enricher = $this->trueHashtagEnricher();
-        $content = 'love you!'.str_repeat('a', 140 - strlen('love you! #love') + 1);
+        $tweetSize = Config::get('twitter.tweetSize');
+        $content = 'love you!'.str_repeat('a', $tweetSize - strlen('love you! #love') + 1);
         $q = $this->fakeQuote($content);
 
         $this->assertEquals($content, $enricher->act($q)->content);
